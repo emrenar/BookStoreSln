@@ -1,4 +1,5 @@
-﻿using WebApi.Common;
+﻿using AutoMapper;
+using WebApi.Common;
 using WebApi.DbOperations;
 
 namespace WebApi.BookOperations.GetBooks
@@ -7,10 +8,11 @@ namespace WebApi.BookOperations.GetBooks
     {
         private readonly BookStoreDbContext _dbContext;
         public int BookId { get; set; }
-
-        public GetByIdQuery(BookStoreDbContext dbContext)
+        private readonly IMapper _mapper;
+        public GetByIdQuery(BookStoreDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         public BookViewModel Handle()
@@ -21,11 +23,11 @@ namespace WebApi.BookOperations.GetBooks
                 throw new InvalidOperationException("Kitap Bulunamadı");
             }
 
-            BookViewModel vm = new BookViewModel();
-            vm.Title = book.Title;
-            vm.PageCount = book.PageCount;
-            vm.PublisDate = book.PublishDate.Date.ToString("dd/MM/yyyy");
-            vm.Genre = ((GenreEnum)book.GenreId).ToString();
+            BookViewModel vm = _mapper.Map<BookViewModel>(book);//new BookViewModel();
+            //vm.Title = book.Title;
+            //vm.PageCount = book.PageCount;
+            //vm.PublisDate = book.PublishDate.Date.ToString("dd/MM/yyyy");
+            //vm.Genre = ((GenreEnum)book.GenreId).ToString();
             return vm;
         }
     }
