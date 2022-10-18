@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using WebApi.DbOperations;
+using WebApi.Entities;
 
 namespace WebApi.BookOperations.CreateBook
 {
@@ -44,5 +45,7 @@ namespace WebApi.BookOperations.CreateBook
         public int PageCount { get; set; }
 
         public DateTime PublishDate { get; set; }
+
+        public int AuthorId { get; set; }
     }
 }
