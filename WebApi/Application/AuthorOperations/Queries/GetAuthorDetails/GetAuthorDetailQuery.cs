@@ -31,6 +31,9 @@ namespace WebApi.Application.AuthorOperations.Queries.GetAuthorDetails
     {
         public int AuthorId { get; set; }
 
+        public string Books { get; set; }
+
+
         public string Name { get; set; }
 
         public DateTime BirthDate { get; set; }

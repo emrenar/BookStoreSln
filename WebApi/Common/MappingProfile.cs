@@ -35,7 +35,7 @@ namespace WebApi.Common
             CreateMap<CreateGenreModel, Genre>();
 
             //Author
-            CreateMap<Author,GetAuthorsViewModel>();
+            CreateMap<Author, GetAuthorsViewModel>();
             CreateMap<Author,GetAuthorDetailViewModel>();
             CreateMap<CreateAuthorModel, Author>();  
 
