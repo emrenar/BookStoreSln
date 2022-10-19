@@ -5,9 +5,9 @@ namespace WebApi.Application.AuthorOperations.Commands.DeleteAuthor
 {
     public class DeleteCommandAuthor
     {
-        private readonly BookStoreDbContext _context;
+        private readonly IBookStoreDbContext _context;
         public int AuthorId { get; set; }
-        public DeleteCommandAuthor(BookStoreDbContext context)
+        public DeleteCommandAuthor(IBookStoreDbContext context)
         {
             _context = context;
         }
@@ -23,7 +23,7 @@ namespace WebApi.Application.AuthorOperations.Commands.DeleteAuthor
             {
                 throw new InvalidOperationException("Silmek istediğiniz yazarın yayında kitabı olduğu için silemezsiniz.");
             }
-            _context.Remove(author);
+            _context.Authors.Remove(author);
             _context.SaveChanges();
         }
     }

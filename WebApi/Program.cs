@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using WebApi.DbOperations;
 using WebApi.Middlewares;
@@ -8,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<BookStoreDbContext>(options => options.UseInMemoryDatabase(databaseName: "BookStoreDB"));
+
+builder.Services.AddScoped<IBookStoreDbContext>(x => x.GetService<BookStoreDbContext>());
+
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly()); // AutoMapper dahil etme.
 builder.Services.AddSingleton<ILoggerService, DbLogger>();
 builder.Services.AddControllers();

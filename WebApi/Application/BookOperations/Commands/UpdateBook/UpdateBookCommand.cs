@@ -8,8 +8,8 @@ namespace WebApi.BookOperations.UpdateBook
 
         public int BookId { get; set; }
 
-        private readonly BookStoreDbContext _dbContext;
-        public UpdateBookCommand(BookStoreDbContext dbContext)
+        private readonly IBookStoreDbContext _dbContext;
+        public UpdateBookCommand(IBookStoreDbContext dbContext)
         {
             _dbContext = dbContext;
         }
